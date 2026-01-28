@@ -8,13 +8,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public abstract class BaseTest {
 
     protected static WebDriver driver;
-    private static final String URL_BASE = "";
+    private static final String PROJETO = "C:\\Users\\Public\\projetos\\estudoSelenium\\controle-de-produtos\\sistema\\login.html";
 
     @BeforeAll
     protected static void iniciar(){
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get(URL_BASE);
+        driver.get(PROJETO);
     }
 
     @AfterAll
