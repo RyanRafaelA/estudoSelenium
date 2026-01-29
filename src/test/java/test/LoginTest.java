@@ -8,6 +8,13 @@ import page.LoginPO;
 public class LoginTest extends BaseTest{
     private static LoginPO loginPage;
 
+    private void executarAcaoDeLogar(String email, String senha){
+        loginPage.escreverEmail(email);
+        loginPage.escreverSenha(senha);
+
+        loginPage.cliqueEnter();
+    }
+
     @BeforeAll
     public static void prepararTestes(){
         loginPage = new LoginPO(driver);
@@ -15,10 +22,7 @@ public class LoginTest extends BaseTest{
 
     @Test
     public void TC001_naoDeveLogarNoSistemaComEmailESenhaVazios(){
-        loginPage.escreverEmail("");
-        loginPage.escreverSenha("");
-
-        loginPage.cliqueEnter();
+        executarAcaoDeLogar("", "");
 
         String mensagem = loginPage.obterMensagemSpan();
 
@@ -27,10 +31,8 @@ public class LoginTest extends BaseTest{
 
     @Test
     public void TC002_naoDeveLogarNoSistemaComEmailIncorretoESenhaVazia(){
-        loginPage.escreverEmail("Teste");
-        loginPage.escreverSenha("");
+        executarAcaoDeLogar("teste", "");
 
-        loginPage.cliqueEnter();
         String mensagem = loginPage.obterMensagemSpan();
 
         Assertions.assertEquals(mensagem, "Informe usuário e senha, os campos não podem ser brancos.");
@@ -38,10 +40,8 @@ public class LoginTest extends BaseTest{
 
     @Test
     public void TC003_naoDeveLogarNoSistemaComEmailVazioESenhaIncorreta(){
-        loginPage.escreverEmail("");
-        loginPage.escreverSenha("teste");
+        executarAcaoDeLogar("", "teste");
 
-        loginPage.cliqueEnter();
         String mensagem = loginPage.obterMensagemSpan();
 
         Assertions.assertEquals(mensagem, "Informe usuário e senha, os campos não podem ser brancos.");
