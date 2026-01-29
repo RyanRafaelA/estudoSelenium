@@ -6,23 +6,35 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPO extends BasePO{
     @FindBy(id = "email")
-    public WebElement inputEmail;
+    private WebElement inputEmail;
 
     @FindBy(id = "senha")
-    public WebElement inputSenha;
+    private WebElement inputSenha;
 
     @FindBy(id = "btn-entrar")
-    public WebElement buttonEntrar;
+    private WebElement buttonEntrar;
 
     @FindBy(css = "form.form-login>div.alert>span")
-    public WebElement spanMensagem;
+    private WebElement spanMensagem;
 
 
     public LoginPO(WebDriver driver) {
         super(driver);
     }
 
-    public String obterMensagem(){
-        return spanMensagem.getText();
+    public String obterMensagemSpan(){
+        return obterMensagem(spanMensagem);
+    }
+
+    public void escreverEmail(String email){
+        escrever(inputEmail, email);
+    }
+
+    public void escreverSenha(String senha){
+        escrever(inputSenha, senha);
+    }
+
+    public void cliqueEnter(){
+        clique(buttonEntrar);
     }
 }
