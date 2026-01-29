@@ -37,4 +37,11 @@ public class LoginPO extends BasePO{
     public void cliqueEnter(){
         clique(buttonEntrar);
     }
+
+    public void executarAcaoDeLogar(String email, String senha){
+        escreverEmail(email);
+        escreverSenha(senha);
+
+        cliqueEnter();
+    }
 }
