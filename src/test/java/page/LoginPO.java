@@ -21,4 +21,8 @@ public class LoginPO extends BasePO{
     public LoginPO(WebDriver driver) {
         super(driver);
     }
+
+    public String obterMensagem(){
+        return spanMensagem.getText();
+    }
 }
