@@ -2,14 +2,15 @@ package test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import page.LoginPO;
 
 public class LoginTest extends BaseTest{
     private static LoginPO loginPage;
 
-    @BeforeAll
-    public static void prepararTestes(){
+    @BeforeEach
+    public void prepararTestes(){
         loginPage = new LoginPO(driver);
     }
 
@@ -65,5 +66,12 @@ public class LoginTest extends BaseTest{
         String mensagem = loginPage.obterMensagemSpan();
 
         Assertions.assertEquals(mensagem, "E-mail ou senha inválidos");
+    }
+
+    @Test
+    public void TC007_deveLogarNoSistemaComEmailESenhaCorretos(){
+        loginPage.executarAcaoDeLogar("admin@admin.com", "admin@123");
+
+        Assertions.assertEquals(loginPage.obterTituloPagina(), "Controle de Produtos");
     }
 }
