@@ -48,4 +48,13 @@ public class LoginTest extends BaseTest{
 
         Assertions.assertEquals(mensagem, "E-mail ou senha inválidos");
     }
+
+    @Test
+    public void TC005_naoDeveLogarNoSistemaComEmailCorretoESenhaIncorreta(){
+        loginPage.executarAcaoDeLogar("admin@admin.com", "teste");
+
+        String mensagem = loginPage.obterMensagemSpan();
+
+        Assertions.assertEquals(mensagem, "E-mail ou senha inválidos");
+    }
 }
