@@ -39,6 +39,9 @@ public class ControleProdutoPO extends BasePO{
     @FindBy(id = "mensagem")
     private WebElement spanMensagem;
 
+    @FindBy(css = "body > div > div:nth-child(2) > table > tbody > tr > td:nth-child(1)")
+    private WebElement codigoProdutoCadastrado;
+
     public ControleProdutoPO(WebDriver driver) {
         super(driver);
     }
@@ -65,5 +68,13 @@ public class ControleProdutoPO extends BasePO{
 
     public String obterMensagemSpan(){
         return obterMensagem(spanMensagem);
+    }
+
+    public void fecharModal(){
+        clique(buttonSair);
+    }
+
+    public String primeiroValorProduto(){
+        return codigoProdutoCadastrado.getText();
     }
 }

@@ -33,6 +33,8 @@ public class ControleProdutoTest extends BaseTest{
 
     @Test
     public void TC002_naoDeveSerPossivelCadastraUmProdutoSemPreencherTodosOsCampos(){
+        String mensagemEsperada = "Todos os campos são obrigatórios para o cadastro!";
+
         controleProdutoPage.cliqueAdicionar();
 
         Produto produto = new Produto.ProdutoBuilder()
@@ -44,8 +46,28 @@ public class ControleProdutoTest extends BaseTest{
 
         controleProdutoPage.cadastrarProduto(produto);
 
-        String mensagem = controleProdutoPage.obterMensagemSpan();
+        String mensagemAtual = controleProdutoPage.obterMensagemSpan();
 
-        Assertions.assertEquals(mensagem, "Todos os campos são obrigatórios para o cadastro!");
+        Assertions.assertEquals(mensagemEsperada, mensagemAtual);
+    }
+
+    @Test
+    public void TC003_cadastrarProdutos(){
+        controleProdutoPage.cliqueAdicionar();
+
+        Produto produto = new Produto.ProdutoBuilder()
+                .codigo("0001")
+                .nome("Martelo")
+                .quantidade(15)
+                .valor(59.9)
+                .data("02/02/2026").build();
+
+        controleProdutoPage.cadastrarProduto(produto);
+
+        controleProdutoPage.fecharModal();
+
+        String codigoProduto = controleProdutoPage.primeiroValorProduto();
+
+        Assertions.assertEquals(produto.getCodigo(), codigoProduto);
     }
 }
