@@ -1,5 +1,6 @@
 package page;
 
+import build.Produto;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,12 +52,12 @@ public class ControleProdutoPO extends BasePO{
         return tituloModal.getText();
     }
 
-    public void cadastrarProduto(String codigo, String nome, Integer quantidade, Double valor, String data){
-        escrever(inputCodigo, codigo);
-        escrever(inputNome, nome);
-        escrever(inputQuantidade, quantidade.toString());
-        escrever(inputValor, valor.toString());
-        escrever(inputData, data);
+    public void cadastrarProduto(Produto produto){
+        escrever(inputCodigo, produto.getCodigo());
+        escrever(inputNome, produto.getNome());
+        escrever(inputQuantidade, produto.getQuantidade().toString());
+        escrever(inputValor, produto.getValor().toString());
+        escrever(inputData, produto.getData());
 
         buttonSalvar.click();
 
