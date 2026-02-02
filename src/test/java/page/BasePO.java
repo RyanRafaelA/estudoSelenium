@@ -33,4 +33,8 @@ public abstract class BasePO {
         wait.until(ExpectedConditions.visibilityOf(elemento));
         return elemento.getText();
     }
+
+    public String obterTituloPagina(){
+        return  driver.getTitle();
+    }
 }
