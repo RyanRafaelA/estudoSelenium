@@ -30,5 +30,14 @@ public class ControleProdutoTest extends BaseTest{
         Assertions.assertEquals(titulo, "Produto");
     }
 
-    public void TC002_
+    @Test
+    public void TC002_naoDeveSerPossivelCadastraUmProdutoSemPreencherTodosOsCampos(){
+        controleProdutoPage.cliqueAdicionar();
+
+        controleProdutoPage.cadastrarProduto("00001", "Martelo", 15, 59.9, "");
+
+        String mensagem = controleProdutoPage.obterMensagemSpan();
+
+        Assertions.assertEquals(mensagem, "Todos os campos são obrigatórios para o cadastro!");
+    }
 }
