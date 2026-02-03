@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public abstract class BaseTest {
 
     protected static WebDriver driver;
+    //Para fazer teste em sua maquina modifique o caminho do projeto com base no seu diretorio:
     private static final String PROJETO = "C:\\Users\\Public\\projetos\\estudoSelenium\\controle-de-produtos\\sistema\\login.html";
 
     @BeforeEach
